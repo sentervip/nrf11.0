@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\ble_multiboard\s132\iar\ble_app_uart_s132_ble_multiboard.ewp</path>
+  </project>
+  <batchBuild/>
+</workspace>
+
+

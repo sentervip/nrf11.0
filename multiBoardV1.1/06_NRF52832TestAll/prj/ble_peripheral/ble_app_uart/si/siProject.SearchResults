@@ -1,0 +1,153 @@
+---- rand Matches (152 in 23 files) ----
+ble_advdata.c (components\ble\common):#define AD_TYPE_BLE_DEVICE_ADDR_TYPE_RANDOM 1UL
+ble_advdata.c (components\ble\common):        p_encoded_data[*p_offset] = AD_TYPE_BLE_DEVICE_ADDR_TYPE_RANDOM;
+ble_advdata.h (components\ble\common):#define AD_TYPE_SEC_MGR_OOB_ADDRESS_TYPE_RANDOM        1UL                     /**< Security Manager OOB Random Address type. */
+ble_advdata.h (components\ble\common):#define AD_TYPE_SEC_MGR_OOB_FLAG_ADDRESS_TYPE_POS      3UL                     /**< Security Manager OOB Address type Flag (0 = Public Address, 1 = Random Address) position. */
+ble_dtm.c (components\ble\ble_dtm):static uint8_t const     m_prbs_content[]    = PRBS9_CONTENT;                /**< Pseudo-random bit sequence defined by the BLE standard. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_ADDR_TYPE_RANDOM_STATIC                 0x01 /**< Random Static address. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE     0x02 /**< Private Resolvable address. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_NON_RESOLVABLE 0x03 /**< Private Non-Resolvable address. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_AD_TYPE_SIMPLE_PAIRING_RANDOMIZER_R         0x0F /**< Simple Pairing Randomizer R. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_AD_TYPE_RANDOM_TARGET_ADDRESS               0x18 /**< Random Target Address. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_AD_TYPE_SIMPLE_PAIRING_RANDOMIZER_R256      0x1E /**< Simple Pairing Randomizer R-256. */
+ble_gap.h (components\softdevice\s132\headers):/**@brief GAP Security Random Number Length. */
+ble_gap.h (components\softdevice\s132\headers):#define BLE_GAP_SEC_RAND_LEN 8
+ble_gap.h (components\softdevice\s132\headers):  uint8_t   rand[BLE_GAP_SEC_RAND_LEN]; /**< Random Number. */
+ble_gap.h (components\softdevice\s132\headers):  uint8_t         r[BLE_GAP_SEC_KEY_LEN];        /**< Random Number. */
+ble_gap.h (components\softdevice\s132\headers): *        instead of generating a random one.
+ble_gap.h (components\softdevice\s132\headers):  uint8_t * p_passkey;                          /**< Pointer to 6-digit ASCII string (digit 0..9 only, no NULL termination) passkey to be used during pairing. If this is NULL, the SoftDevice will generate a random passkey if required.*/
+ble_gap.h (components\softdevice\s132\headers): * be @ref BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE or
+ble_gap.h (components\softdevice\s132\headers): * @ref BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_NON_RESOLVABLE. The given address is ignored and the
+ble_gap.h (components\softdevice\s132\headers): * @ref BLE_GAP_ADDR_TYPE_RANDOM_STATIC address, the cycle mode must be
+ble_gap.h (components\softdevice\s132\headers): * @note By default the SoftDevice will set an address of type @ref BLE_GAP_ADDR_TYPE_RANDOM_STATIC upon being
+ble_gap.h (components\softdevice\s132\headers): * enabled. The address is a random number populated during the IC manufacturing process and remains unchanged
+ble_gls.c (components\ble\ble_services\ble_gls):#define OPERAND_FILTER_TYPE_SEQ_NUM     0x01                                     /**< Filter data using Sequence Number criteria. */
+ble_gls.c (components\ble\ble_services\ble_gls):#define OPERAND_FILTER_TYPE_FACING_TIME 0x02                                     /**< Filter data using User Facing Time criteria. */
+ble_gls.c (components\ble\ble_services\ble_gls):#define OPERAND_FILTER_TYPE_RFU_START   0x07                                     /**< Start of filter types reserved For Future Use range */
+ble_gls.c (components\ble\ble_services\ble_gls):#define OPERAND_FILTER_TYPE_RFU_END     0xFF                                     /**< End of filter types reserved For Future Use range */
+ble_gls.c (components\ble\ble_services\ble_gls):static uint8_t          m_pending_racp_response_operand[2];            /**< Operand of RACP response to be sent. */
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response.operand_len = 2;
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response.p_operand   = m_pending_racp_response_operand;
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response_operand[0] = opcode;
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response_operand[1] = value;
+ble_gls.c (components\ble\ble_services\ble_gls):            else if (p_racp_request->operand_len != 0)
+ble_gls.c (components\ble\ble_services\ble_gls):                *p_response_code = RACP_RESPONSE_INVALID_OPERAND;
+ble_gls.c (components\ble\ble_services\ble_gls):                if (p_racp_request->operand_len != 0)
+ble_gls.c (components\ble\ble_services\ble_gls):                    *p_response_code = RACP_RESPONSE_INVALID_OPERAND;
+ble_gls.c (components\ble\ble_services\ble_gls):                if (p_racp_request->p_operand[0] == OPERAND_FILTER_TYPE_SEQ_NUM)
+ble_gls.c (components\ble\ble_services\ble_gls):                    if (p_racp_request->operand_len != 3)
+ble_gls.c (components\ble\ble_services\ble_gls):                        *p_response_code = RACP_RESPONSE_INVALID_OPERAND;
+ble_gls.c (components\ble\ble_services\ble_gls):                else if (p_racp_request->p_operand[0] == OPERAND_FILTER_TYPE_FACING_TIME)
+ble_gls.c (components\ble\ble_services\ble_gls):                    *p_response_code = RACP_RESPONSE_OPERAND_UNSUPPORTED;
+ble_gls.c (components\ble\ble_services\ble_gls):                else if (p_racp_request->p_operand[0] >= OPERAND_FILTER_TYPE_RFU_START)
+ble_gls.c (components\ble\ble_services\ble_gls):                    *p_response_code = RACP_RESPONSE_OPERAND_UNSUPPORTED;
+ble_gls.c (components\ble\ble_services\ble_gls):                    *p_response_code = RACP_RESPONSE_INVALID_OPERAND;
+ble_gls.c (components\ble\ble_services\ble_gls):    uint16_t seq_num = (p_racp_request->p_operand[2] << 8) | p_racp_request->p_operand[1];
+ble_gls.c (components\ble\ble_services\ble_gls):        seq_num = (p_racp_request->p_operand[2] << 8) | p_racp_request->p_operand[1];
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response.operand_len = sizeof(uint16_t);
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response.p_operand   = m_pending_racp_response_operand;
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response_operand[0] = num_records & 0xFF;
+ble_gls.c (components\ble\ble_services\ble_gls):    m_pending_racp_response_operand[1] = num_records >> 8;
+ble_gls.h (components\ble\ble_services\ble_gls):#define BLE_GLS_CONTEXT_MEAL_PREPRANDIAL               1       /**< Preprandial (before meal) */
+ble_gls.h (components\ble\ble_services\ble_gls):#define BLE_GLS_CONTEXT_MEAL_POSTPRANDIAL              2       /**< Postprandial (after meal) */
+ble_racp.c (components\ble\ble_racp):    p_racp_val->operand_len = 0;
+ble_racp.c (components\ble\ble_racp):    p_racp_val->p_operand   = NULL;
+ble_racp.c (components\ble\ble_racp):        p_racp_val->operand_len = data_len - 2;
+ble_racp.c (components\ble\ble_racp):        p_racp_val->p_operand   = &p_data[2];  //lint !e416
+ble_racp.c (components\ble\ble_racp):        for (i = 0; i < p_racp_val->operand_len; i++)
+ble_racp.c (components\ble\ble_racp):            p_data[len++] = p_racp_val->p_operand[i];
+ble_racp.h (components\ble\ble_racp):#define RACP_RESPONSE_INVALID_OPERAND       5       /**< Record Access Control Point response code - Operand not valid for service. */
+ble_racp.h (components\ble\ble_racp):#define RACP_RESPONSE_OPERAND_UNSUPPORTED   9       /**< Record Access Control Point response code - Unsupported operand. */
+ble_racp.h (components\ble\ble_racp):    uint8_t   operand_len;                          /**< Length of the operand. */
+ble_racp.h (components\ble\ble_racp):    uint8_t * p_operand;                            /**< Pointer to the operand. */
+device_manager.h (components\ble\device_manager): *                                 type was set to BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE.
+device_manager_central.c (components\ble\device_manager):            if (p_addr->addr_type != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE)
+device_manager_central.c (components\ble\device_manager):        (p_addr->addr_type != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE))
+device_manager_central.c (components\ble\device_manager):                                BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE)
+device_manager_peripheral.c (components\ble\device_manager):            if (p_addr->addr_type != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE)
+device_manager_peripheral.c (components\ble\device_manager):        (p_addr->addr_type != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE))
+device_manager_peripheral.c (components\ble\device_manager):                                BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE)
+ecc.c (components\libraries\ecc):    errcode = nrf_drv_rng_block_rand(dest, (uint32_t) size);
+id_manager.c (components\ble\peer_manager):                     != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_NON_RESOLVABLE)
+id_manager.c (components\ble\peer_manager):                 * random addresses can be resolved agains known IRKs. Non-resolvable random addresses
+id_manager.c (components\ble\peer_manager):                        case BLE_GAP_ADDR_TYPE_RANDOM_STATIC:
+id_manager.c (components\ble\peer_manager):                        case BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE:
+id_manager.c (components\ble\peer_manager):                        case BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_NON_RESOLVABLE:
+id_manager.c (components\ble\peer_manager):    return (memcmp(p_master_id1->rand, p_master_id2->rand, BLE_GAP_SEC_RAND_LEN) == 0);
+id_manager.c (components\ble\peer_manager):    for (uint32_t i = 0; i < BLE_GAP_SEC_RAND_LEN; i++)
+id_manager.c (components\ble\peer_manager):        if (p_master_id->rand[i] != 0)
+id_manager.c (components\ble\peer_manager):                        != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE &&
+id_manager.c (components\ble\peer_manager):                        != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_NON_RESOLVABLE
+id_manager.c (components\ble\peer_manager): * @param[in]  p_r          The rand used in the hash function. For generating a new address
+id_manager.c (components\ble\peer_manager): *                          this would be a random number. For resolving a resolvable address
+id_manager.c (components\ble\peer_manager):    if (p_addr->addr_type != BLE_GAP_ADDR_TYPE_RANDOM_PRIVATE_RESOLVABLE)
+id_manager.c (components\ble\peer_manager):    uint8_t prand[IM_ADDR_CLEARTEXT_LENGTH];
+id_manager.c (components\ble\peer_manager):    memcpy(prand, &p_addr->addr[IM_ADDR_CIPHERTEXT_LENGTH], IM_ADDR_CLEARTEXT_LENGTH);
+id_manager.c (components\ble\peer_manager):    ah(p_irk->irk, prand, local_hash);
+id_manager.h (components\ble\peer_manager):/**@brief Function for getting the corresponding peer ID from a master ID (EDIV and rand).
+id_manager.h (components\ble\peer_manager): *          This can be used to resolve the identity of a device distributing a random
+id_manager.h (components\ble\peer_manager): * @param[in] p_addr  A random resolvable address.
+nrf51.h (components\device):  * @brief Random Number Generator. (RNG)
+nrf51.h (components\device):  __O  uint32_t  TASKS_START;                       /*!< Start the random number generator.                                    */
+nrf51.h (components\device):  __O  uint32_t  TASKS_STOP;                        /*!< Stop the random number generator.                                     */
+nrf51.h (components\device):  __IO uint32_t  EVENTS_VALRDY;                     /*!< New random number generated and written to VALUE register.            */
+nrf51.h (components\device):  __I  uint32_t  VALUE;                             /*!< RNG random number.                                                    */
+nrf51_bitfields.h (components\device):#define FICR_DEVICEADDRTYPE_DEVICEADDRTYPE_Random (1UL) /*!< Random address. */
+nrf51_bitfields.h (components\device):/* Description: Random Number Generator. */
+nrf51_bitfields.h (components\device):/* Description: RNG random number. */
+nrf51_bitfields.h (components\device):/* Bits 7..0 : Generated random number. */
+nrf52.h (components\device):  * @brief Random Number Generator (RNG)
+nrf52.h (components\device):  __O  uint32_t  TASKS_START;                       /*!< Task starting the random number generator                             */
+nrf52.h (components\device):  __O  uint32_t  TASKS_STOP;                        /*!< Task stopping the random number generator                             */
+nrf52.h (components\device):  __IO uint32_t  EVENTS_VALRDY;                     /*!< Event being generated for every new random number written to
+nrf52.h (components\device):  __I  uint32_t  VALUE;                             /*!< Output random number                                                  */
+nrf52_bitfields.h (components\device):#define FICR_DEVICEADDRTYPE_DEVICEADDRTYPE_Random (1UL) /*!< Random address */
+nrf52_bitfields.h (components\device):/* Description: Random Number Generator */
+nrf52_bitfields.h (components\device):/* Description: Output random number */
+nrf52_bitfields.h (components\device):/* Bits 7..0 : Generated random number */
+nrf_drv_rng.c (components\drivers_nrf\rng):    app_fifo_t rand_pool;
+nrf_drv_rng.c (components\drivers_nrf\rng):    if (FIFO_LENGTH(m_rng_cb.rand_pool) <= m_rng_cb.rand_pool.buf_size_mask)
+nrf_drv_rng.c (components\drivers_nrf\rng):        result = app_fifo_init(&m_rng_cb.rand_pool, m_rng_cb.buffer, RNG_CONFIG_POOL_SIZE);
+nrf_drv_rng.c (components\drivers_nrf\rng):    *p_bytes_available = FIFO_LENGTH(m_rng_cb.rand_pool);
+nrf_drv_rng.c (components\drivers_nrf\rng):    result = sd_rand_application_bytes_available_get(p_bytes_available);
+nrf_drv_rng.c (components\drivers_nrf\rng):    result = sd_rand_application_pool_capacity_get(p_pool_capacity);
+nrf_drv_rng.c (components\drivers_nrf\rng):ret_code_t nrf_drv_rng_rand(uint8_t * p_buff, uint8_t length)
+nrf_drv_rng.c (components\drivers_nrf\rng):    if (FIFO_LENGTH(m_rng_cb.rand_pool) >= length)
+nrf_drv_rng.c (components\drivers_nrf\rng):            result = app_fifo_get(&(m_rng_cb.rand_pool), &p_buff[i]);
+nrf_drv_rng.c (components\drivers_nrf\rng):    result = sd_rand_application_vector_get(p_buff, length);
+nrf_drv_rng.c (components\drivers_nrf\rng):ret_code_t nrf_drv_rng_block_rand(uint8_t * p_buff, uint32_t length)
+nrf_drv_rng.c (components\drivers_nrf\rng):        while((result = nrf_drv_rng_rand(&p_buff[count], len)) != NRF_SUCCESS)
+nrf_drv_rng.c (components\drivers_nrf\rng):            ASSERT(result == NRF_ERROR_SOC_RAND_NOT_ENOUGH_VALUES);
+nrf_drv_rng.c (components\drivers_nrf\rng):        uint32_t nrf_error = app_fifo_put(&m_rng_cb.rand_pool, nrf_rng_random_value_get());
+nrf_drv_rng.c (components\drivers_nrf\rng):        if ((FIFO_LENGTH(m_rng_cb.rand_pool) > m_rng_cb.rand_pool.buf_size_mask) || (nrf_error == NRF_ERROR_NO_MEM))
+nrf_drv_rng.h (components\drivers_nrf\rng): * @brief Random number generator (RNG) APIs.
+nrf_drv_rng.h (components\drivers_nrf\rng): * @details The RNG HAL provides basic APIs for accessing the registers of the random number generator. 
+nrf_drv_rng.h (components\drivers_nrf\rng): * @brief Driver for managing the random number generator (RNG).
+nrf_drv_rng.h (components\drivers_nrf\rng): * @brief Function for getting the number of currently available random bytes.
+nrf_drv_rng.h (components\drivers_nrf\rng): * @retval     NRF_SUCCESS                          If the number of available random bytes was written to p_bytes_available.
+nrf_drv_rng.h (components\drivers_nrf\rng): * @brief Function for querying the capacity of the application random pool.
+nrf_drv_rng.h (components\drivers_nrf\rng): * @brief Function for getting the vector of random numbers.
+nrf_drv_rng.h (components\drivers_nrf\rng): * @retval     NRF_ERROR_SOC_RAND_NOT_ENOUGH_VALUES If no bytes were written to the buffer
+nrf_drv_rng.h (components\drivers_nrf\rng):ret_code_t nrf_drv_rng_rand(uint8_t * p_buff, uint8_t length);
+nrf_drv_rng.h (components\drivers_nrf\rng): * @brief Blocking function for getting an arbitrary array of random numbers.
+nrf_drv_rng.h (components\drivers_nrf\rng): *       required and on the state of the current internal pool of random numbers.
+nrf_drv_rng.h (components\drivers_nrf\rng):ret_code_t nrf_drv_rng_block_rand(uint8_t * p_buff, uint32_t length);
+nrf_error_soc.h (components\softdevice\s132\headers):/* Rand errors */
+nrf_error_soc.h (components\softdevice\s132\headers):#define NRF_ERROR_SOC_RAND_NOT_ENOUGH_VALUES              (NRF_ERROR_SOC_BASE_NUM + 7)  ///< RAND not enough values
+nrf_rng.h (components\drivers_nrf\hal): * @brief Hardware access layer for managing the random number generator (RNG).
+nrf_rng.h (components\drivers_nrf\hal):    NRF_RNG_TASK_START = offsetof(NRF_RNG_Type, TASKS_START), /**< Start the random number generator. */
+nrf_rng.h (components\drivers_nrf\hal):    NRF_RNG_TASK_STOP  = offsetof(NRF_RNG_Type, TASKS_STOP)   /**< Stop the random number generator. */
+nrf_rng.h (components\drivers_nrf\hal):    NRF_RNG_EVENT_VALRDY = offsetof(NRF_RNG_Type, EVENTS_VALRDY) /**< New random number generated event. */
+nrf_rng.h (components\drivers_nrf\hal): * @brief Function for getting the previously generated random value.
+nrf_rng.h (components\drivers_nrf\hal): * @return     Previously generated random value.
+nrf_rng.h (components\drivers_nrf\hal):__STATIC_INLINE uint8_t nrf_rng_random_value_get(void)
+nrf_soc.h (components\softdevice\s132\headers):  SD_RAND_APPLICATION_POOL_CAPACITY_GET,
+nrf_soc.h (components\softdevice\s132\headers):  SD_RAND_APPLICATION_BYTES_AVAILABLE_GET,
+nrf_soc.h (components\softdevice\s132\headers):  SD_RAND_APPLICATION_VECTOR_GET,
+nrf_soc.h (components\softdevice\s132\headers):/**@brief Query the capacity of the application random pool.
+nrf_soc.h (components\softdevice\s132\headers):SVCALL(SD_RAND_APPLICATION_POOL_CAPACITY_GET, uint32_t, sd_rand_application_pool_capacity_get(uint8_t * p_pool_capacity));
+nrf_soc.h (components\softdevice\s132\headers):/**@brief Get number of random bytes available to the application.
+nrf_soc.h (components\softdevice\s132\headers):SVCALL(SD_RAND_APPLICATION_BYTES_AVAILABLE_GET, uint32_t, sd_rand_application_bytes_available_get(uint8_t * p_bytes_available));
+nrf_soc.h (components\softdevice\s132\headers):/**@brief Get random bytes from the application pool.
+nrf_soc.h (components\softdevice\s132\headers): * @retval ::NRF_ERROR_SOC_RAND_NOT_ENOUGH_VALUES No bytes were written to the buffer, because there were not enough bytes available.
+nrf_soc.h (components\softdevice\s132\headers):SVCALL(SD_RAND_APPLICATION_VECTOR_GET, uint32_t, sd_rand_application_vector_get(uint8_t * p_buff, uint8_t length));
