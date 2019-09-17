@@ -40,13 +40,14 @@
 #include "oled.h"
 #include "multiboard_process.h"
 #include "utc_date.h"
+#include "pwm.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include the service_changed characteristic. If not enabled, the server's database cannot be changed for the lifetime of the device. */
 
 #define CENTRAL_LINK_COUNT              0                                           /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT           1                                           /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
-#define DEVICE_NAME                     "Nordic_UART"                               /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "MAGIC_LED"                               /**< Name of device. Will be included in the advertising data. */
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
@@ -133,10 +134,26 @@ static void gap_params_init(void)
 /**@snippet [Handling the data received over BLE] */
 static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
+		uint32_t lu32Rand = 0;
+		uint8_t lu8RandLen = 0;
+	
     for (uint32_t i = 0; i < length; i++)
     {
         while(app_uart_put(p_data[i]) != NRF_SUCCESS);
-    }
+			  if(p_data[0] == 'c' && p_data[1] == 'c'){				    
+					  
+						sd_rand_application_bytes_available_get(&lu8RandLen);
+						if(lu8RandLen > 3)lu8RandLen = 3;
+						sd_rand_application_vector_get((uint8_t *)&lu32Rand, lu8RandLen);
+						//setRPwmDuty((lu32Rand & 0XFF) % 100);
+						//setGPwmDuty(((lu32Rand >> 8) & 0XFF) % 100);
+						//setBPwmDuty(((lu32Rand >> 16)& 0XFF) % 100);
+					  setRPwmDuty(160%100);
+						setGPwmDuty(82);
+						setBPwmDuty(45);
+					  memset(p_data, 0, length);
+          }
+			}
     while(app_uart_put('\n') != NRF_SUCCESS);
 }
 /**@snippet [Handling the data received over BLE] */
@@ -557,6 +574,10 @@ int main(void)
     conn_params_init();
 
 	initOled();
+	initRgbPwm();	
+	setRPwmDuty(255);
+	setGPwmDuty(255);
+	setBPwmDuty(255);
 	initUtcDate();
 	welcomScreen();
 
