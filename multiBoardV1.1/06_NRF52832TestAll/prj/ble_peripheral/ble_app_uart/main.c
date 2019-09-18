@@ -142,18 +142,49 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
         while(app_uart_put(p_data[i]) != NRF_SUCCESS);
 			  if(p_data[0] == 'c' && p_data[1] == 'c'){				    
 					  
+				  //blink rgb led
+				  if(p_data[2] %4 ==  0){
 						sd_rand_application_bytes_available_get(&lu8RandLen);
 						if(lu8RandLen > 3)lu8RandLen = 3;
 						sd_rand_application_vector_get((uint8_t *)&lu32Rand, lu8RandLen);
 						//setRPwmDuty((lu32Rand & 0XFF) % 100);
 						//setGPwmDuty(((lu32Rand >> 8) & 0XFF) % 100);
 						//setBPwmDuty(((lu32Rand >> 16)& 0XFF) % 100);
-					  setRPwmDuty(160%100);
+					    setRPwmDuty(160%100);
 						setGPwmDuty(82);
 						setBPwmDuty(45);
-					  memset(p_data, 0, length);
+						LEDS_ON(BSP_LED_2_MASK);
+						LEDS_OFF(BSP_LED_3_MASK);
+						LEDS_OFF(BSP_LED_4_MASK);
+						LEDS_OFF(BSP_LED_5_MASK);
+				  }else if(p_data[2] %4 ==  1){
+					  setRPwmDuty(90);
+					  setGPwmDuty(255);
+					  setBPwmDuty(255);
+						LEDS_ON(BSP_LED_2_MASK);
+						LEDS_ON(BSP_LED_3_MASK);
+						LEDS_OFF(BSP_LED_4_MASK);
+						LEDS_OFF(BSP_LED_5_MASK);
+			    }else if(p_data[2] %4 ==  2){
+				  setRPwmDuty(255);
+				  setGPwmDuty(90);
+				  setBPwmDuty(255);
+					LEDS_ON(BSP_LED_2_MASK);
+					LEDS_ON(BSP_LED_3_MASK);
+					LEDS_ON(BSP_LED_4_MASK);
+					LEDS_OFF(BSP_LED_5_MASK);	
+			  }else{
+				  setRPwmDuty(255);
+				  setGPwmDuty(255);
+				  setBPwmDuty(90);
+					LEDS_ON(BSP_LED_2_MASK);
+					LEDS_ON(BSP_LED_3_MASK);
+					LEDS_ON(BSP_LED_4_MASK);
+					LEDS_ON(BSP_LED_5_MASK);
+			  }
+			 memset(p_data, 0, length);
           }
-			}
+	}
     while(app_uart_put('\n') != NRF_SUCCESS);
 }
 /**@snippet [Handling the data received over BLE] */
@@ -573,13 +604,13 @@ int main(void)
     advertising_init();
     conn_params_init();
 
-	initOled();
+	//initOled();
 	initRgbPwm();	
 	setRPwmDuty(255);
 	setGPwmDuty(255);
 	setBPwmDuty(255);
-	initUtcDate();
-	welcomScreen();
+	//initUtcDate();
+	//welcomScreen();
 
     printf("Thank you for choosing BLE Multiboard and rf_smart!^_^\r\nrf-smart.taobao.com\r\n");
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
